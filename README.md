@@ -11,14 +11,9 @@
 
 ### Upload de vídeos na plataforma, deve receber uma URL com o vídeo, uma URL de uma imagem para capa do vídeo, uma descrição e um título.
 
-  
-  
+
 
 ## Deploy da Aplicação com FutureTube: :dash:
-
-  
-
-/* Aqui estamos usando a tag Quotes do markdown*/
 
   
 
@@ -46,7 +41,7 @@
 
 -  [Ant Design](https://ant.design/)
 
-...
+
 
 ## Como rodar a aplicação :arrow_forward:
 
@@ -85,7 +80,7 @@ cd f4tube
 npm run start
 ```
 Pronto, agora é possível acessar a aplicação a partir da rota http://localhost:3000/
-...
+
 
   ## Status do projeto :heavy_exclamation_mark:
 > Status do Projeto: Em desenvolvimento :warning:
