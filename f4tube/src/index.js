@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./containers/App";
+import * as serviceWorker from './serviceWorker';
 import * as firebase from "firebase/app"
 
 const firebaseConfig = {
@@ -17,3 +18,4 @@ firebase.initializeApp(firebaseConfig);
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
+serviceWorker.unregister();

@@ -6,7 +6,8 @@ import { CarouselHomePage } from "../../components/Carousel";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import 'antd/dist/antd.css';
-import  HeaderMenu  from "../../components/HeaderMenu"
+import  HeaderMenu  from "../../components/HeaderMenu";
+import axios from "axios";
 
 const {Content, Footer } = Layout;
 const { Meta } = Card;
@@ -15,22 +16,24 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            videos: [],
+            videos: []
         }
     }
 
     componentDidMount() {
         this.getVideos()
+        console.log("#",this.state.videos)
     }
 
     getVideos = async () => {
-        firebase.firestore().collection("videos").limit(6).onSnapshot(querySnapshot => {
+        firebase.firestore().collection('videos').limit(6).onSnapshot(querySnapshot => {
             const videos = querySnapshot.docs.map(doc => doc.data());
             this.setState({ videos: videos })
         })
     }
 
     render() {
+        console.log("#",this.state.videos)
         return (
             <Layout>
                 <HeaderMenu />
