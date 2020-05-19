@@ -1,6 +1,5 @@
 import * as admin from "firebase-admin";
 import { VideoGateway } from "../business/gateway/VideoGateway";
-import { Videos } from "../business/entities/videos";
 
 export class VideoDB implements VideoGateway {
   async createVideo(urlVideo: string, urlPhotoVideo: string, title: string, desc: string): Promise<void> {
@@ -10,9 +9,5 @@ export class VideoDB implements VideoGateway {
       title,
       desc
     });
-  }
-
-  async getVideoById(id: string): Promise<Videos | undefined>{
-    return
   }
 }
