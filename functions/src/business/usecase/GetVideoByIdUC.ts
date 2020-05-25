@@ -1,30 +1,25 @@
-import { VideoGateway } from "../gateway/VideoGateway"
+import { VideoByIdGateway } from "../gateway/VideoByIdGateway"
+import { Videos } from "../entities/videos"
 
 interface GetVideoByIdUCInput {
-    id: string
+    userId: string
 }
 
 interface GetVideoByIdUCOutput {
-    urlVideo: string,
-    urlPhotoVideo: string,
-    title: string,
-    desc: string
+    videos: Videos[]
 }
 
 export class GetVideoByIdUC {
-    constructor(private videoGateway: VideoGateway) {}
+    constructor(private videoGateway: VideoByIdGateway) {}
 
     async execute(input: GetVideoByIdUCInput): Promise<GetVideoByIdUCOutput>{
-        const videos = await this.videoGateway.getVideoById(input.id)
+        const result = await this.videoGateway.getVideoById(input.userId)
         
-        if (!videos) {
+        if (!result) {
             throw new Error("There is already a show at this time")
         }
         return {
-            urlVideo: videos.getUrlVideo(),
-            urlPhotoVideo: videos.getUrlPhotoVideo(),
-            title: videos.getTitle(),
-            desc: videos.getDesc()
+            videos: result
         }
     }
 }
