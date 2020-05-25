@@ -3,7 +3,8 @@ export class Videos {
         private urlVideo: string,
         private urlPhotoVideo: string,
         private title: string,
-        private desc: string
+        private desc: string,
+        private userId: string
     ) { }
 
     public getUrlVideo(): string {
@@ -20,5 +21,9 @@ export class Videos {
 
     public getDesc(): string {
         return this.desc;
+    }
+
+    public getUserId(): string {
+        return this.userId
     }
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { VideoDetailsUC } from "../business/usecase/VideoDetailsUC";
-import { VideosDetailsDB } from "../data/videosDetailsDB";
+import { VideosDetailsDB } from "../data/VideosDetailsDB";
 
 export const getVideosDetaisEP = async (req: Request, res: Response) =>{
     try {
