@@ -7,7 +7,8 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import 'antd/dist/antd.css';
 import  HeaderMenu  from "../../components/HeaderMenu";
-import axios from "axios";
+import { connect } from "react-redux";
+import { getVideos } from '../../actions/videos'
 
 const {Content, Footer } = Layout;
 const { Meta } = Card;
@@ -21,8 +22,17 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        this.getVideos()
-        console.log("#",this.state.videos)
+        const verifyUser = firebase.auth().currentUser
+       if(verifyUser === null){
+           window.alert("É preciso logar")   
+       }else{
+           this.props.getVideos()
+           this.testaUsers();
+       }
+    }
+
+    testaUsers(){
+        const users = firebase.auth().currentUser
     }
 
     getVideos = async () => {
@@ -33,7 +43,6 @@ class HomePage extends React.Component {
     }
 
     render() {
-        console.log("#",this.state.videos)
         return (
             <Layout>
                 <HeaderMenu />
@@ -46,7 +55,7 @@ class HomePage extends React.Component {
                                 <Content style={{}} />
                                 <Content style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', margin: '10px', justifyContent: 'center' }}>
 
-                                    {this.state.videos.map((video) =>
+                                    {this.props.getToVideos.map((video) =>
                                         <Card
                                             hoverable
                                             style={{ width: 440, padding: '10px', margin: '10px', display: 'grid' }}
@@ -67,4 +76,14 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+    getToVideos: state.videos.allVideos
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getVideos: () => dispatch(getVideos()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
