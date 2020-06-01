@@ -6,11 +6,11 @@ import { CarouselHomePage } from "../../components/Carousel";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import 'antd/dist/antd.css';
-import  HeaderMenu  from "../../components/HeaderMenu";
+import HeaderMenu from "../../components/HeaderMenu";
 import { connect } from "react-redux";
 import { getVideos } from '../../actions/videos'
 
-const {Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 const { Meta } = Card;
 
 class HomePage extends React.Component {
@@ -22,27 +22,34 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        const verifyUser = firebase.auth().currentUser
-       if(verifyUser === null){
-           window.alert("É preciso logar")   
-       }else{
-           this.props.getVideos()
-           this.testaUsers();
-       }
+        // const verifyUser = firebase.auth().currentUser
+        // if (verifyUser === null) {
+        //     window.alert("É preciso logar")
+        // } else {
+        //     this.props.getVideos()
+        //     this.testaUsers();
+        // }
+        this.props.getVideos()
+
+
     }
 
-    testaUsers(){
+    testaUsers() {
         const users = firebase.auth().currentUser
     }
 
-    getVideos = async () => {
-        firebase.firestore().collection('videos').limit(6).onSnapshot(querySnapshot => {
-            const videos = querySnapshot.docs.map(doc => doc.data());
-            this.setState({ videos: videos })
-        })
-    }
+    // getVideos = async () => {
+    //     firebase.firestore().collection('videos').limit(6).onSnapshot(querySnapshot => {
+    //         const videos = querySnapshot.docs.map(doc => doc.data());
+    //         this.setState({ videos: videos })
+    //     })
+    // }
 
     render() {
+
+        console.log("2", this.state.videos)
+        console.log("3", this.props.getToVideos)
+
         return (
             <Layout>
                 <HeaderMenu />
