@@ -1,5 +1,5 @@
 import axios from 'axios';
-import 'firebase/firestore'
+import 'firebase/firestore';
 
 const baseUrl = "https://us-central1-f4tube-e7be0.cloudfunctions.net/f4Api"
 
